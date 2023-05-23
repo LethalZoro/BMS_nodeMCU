@@ -10,7 +10,7 @@ const char* mqtt_server = "91.121.93.94";//broker.mqtt-dashboard.com
 WiFiClient espClient;
 PubSubClient client(espClient);
 unsigned long lastMsg = 0;
-#define MSG_BUFFER_SIZE	(50)
+#define MSG_BUFFER_SIZE	(120)
 // char msg[MSG_BUFFER_SIZE];
 int value = 0;
 
@@ -104,12 +104,11 @@ void loop() {
   // Serial.print(Serial.read());
   unsigned long now = millis();
     if (Serial.available()>0) {
-    Serial.readBytesUntil('?',m1,50);
-    Serial.readBytesUntil('?',m2,50);
+    Serial.readBytesUntil('?',m1,120);
 
 
     }
-  String msg=String(m1)+String("\n")+String(m2);
+  String msg=String(m1);
   if (now - lastMsg > 1000) {
 
     lastMsg = now;
